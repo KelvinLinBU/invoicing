@@ -16,6 +16,7 @@ from process_report.invoices import (
     bu_internal_invoice,
     pi_specific_invoice,
     MOCA_prepaid_invoice,
+    prepay_credits_snapshot,
 )
 from process_report.processors import (
     validate_pi_alias_processor,
@@ -358,6 +359,14 @@ def main():
         name="", invoice_month=invoice_month, data=processed_data.copy()
     )
 
+    prepay_credits_snap = prepay_credits_snapshot.PrepayCreditsSnapshot(
+        name="",
+        invoice_month=invoice_month,
+        data=None,
+        prepay_credits=prepay_credits,
+        prepay_contacts=prepay_info,
+    )
+
     util.process_and_export_invoices(
         [
             lenovo_inv,
@@ -367,6 +376,7 @@ def main():
             bu_internal_inv,
             pi_inv,
             moca_prepaid_inv,
+            prepay_credits_snap,
         ],
         args.upload_to_s3,
     )
