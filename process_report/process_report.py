@@ -64,6 +64,9 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
+rates_info = load_from_url()
+
+
 def load_alias(alias_file):
     alias_dict = dict()
 
@@ -203,9 +206,9 @@ def main():
     )
     parser.add_argument(
         "--BU-subsidy-amount",
-        required=True,
+        required=False,
         type=int,
-        help="Amount of subsidy given to BU PIs",
+        help="Amount of subsidy given to BU PIs. If not provided, defaults to fetching from nerc-rates",
     )
     args = parser.parse_args()
 
@@ -231,6 +234,11 @@ def main():
         prepay_debits_filepath = args.prepay_debits
     else:
         prepay_debits_filepath = util.fetch_s3(PREPAY_DEBITS_S3_FILEPATH)
+
+    if args.BU_subsidy_amount:
+        bu_subsidy_amount = args.BU_subsidy_amount
+    else:
+        bu_subsidy_amount = int(rates_info.get_value_at("BU Subsidy", invoice_month))
 
     prepay_credits, prepay_projects, prepay_info = load_prepay_csv(
         args.prepay_credits, args.prepay_projects, args.prepay_contacts
@@ -277,7 +285,6 @@ def main():
     )
     validate_billable_pi_proc.process()
 
-    rates_info = load_from_url()
     new_pi_credit_proc = new_pi_credit_processor.NewPICreditProcessor(
         "",
         invoice_month,
@@ -293,7 +300,7 @@ def main():
     new_pi_credit_proc.process()
 
     bu_subsidy_proc = bu_subsidy_processor.BUSubsidyProcessor(
-        "", invoice_month, new_pi_credit_proc.data.copy(), args.BU_subsidy_amount
+        "", invoice_month, new_pi_credit_proc.data.copy(), bu_subsidy_amount
     )
     bu_subsidy_proc.process()
 
