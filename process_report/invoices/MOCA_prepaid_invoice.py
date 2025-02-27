@@ -38,4 +38,4 @@ class MOCAPrepaidInvoice(invoice.Invoice):
         return f"Invoices/{self.invoice_month}/Archive/MOCA-A_Prepaid_Groups-{self.invoice_month}-Invoice {util.get_iso8601_time()}.csv"
 
     def _prepare_export(self):
-        self.data = self.data[self.data[invoice.GROUP_MANAGED_FIELD] == False]  # noqa: E712
+        self.export_data = self.data[self.data[invoice.GROUP_MANAGED_FIELD] == False]  # noqa: E712
