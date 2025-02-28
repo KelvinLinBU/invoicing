@@ -4,6 +4,7 @@ from process_report.invoices import (
     invoice,
     billable_invoice,
     pi_specific_invoice,
+    prepay_credits_snapshot,
 )
 
 from process_report.processors import (
@@ -174,4 +175,16 @@ def new_prepayment_processor(
         prepay_contacts,
         prepay_debits_filepath,
         upload_to_s3,
+    )
+
+
+def new_prepay_credits_snapshot(
+    name="",
+    invoice_month="0000-00",
+    data=None,
+    prepay_credits=None,
+    prepay_contacts=None,
+):
+    return prepay_credits_snapshot.PrepayCreditsSnapshot(
+        name, invoice_month, data, prepay_credits, prepay_contacts
     )
