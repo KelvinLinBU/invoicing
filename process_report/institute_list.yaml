@@ -40,7 +40,7 @@
     - harvard.edu
     - chemistry.harvard.edu
     mghpcc_partnership_start_date: "2013-06"
-    include_in_NERC_total_invoice: True
+    include_in_nerc_total_invoice: True
 -   display_name: Worcester Polytechnic Institute
     domains:
     - wpi.edu
