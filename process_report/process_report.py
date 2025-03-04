@@ -3,6 +3,7 @@ import sys
 import datetime
 import logging
 from decimal import Decimal
+import os
 
 import pandas
 import pyarrow
@@ -20,6 +21,7 @@ from process_report.invoices import (
     prepay_credits_snapshot,
 )
 from process_report.processors import (
+    coldfront_fetch_processor,
     validate_pi_alias_processor,
     add_institution_processor,
     lenovo_processor,
@@ -61,6 +63,8 @@ PI_S3_FILEPATH = "PIs/PI.csv"
 ALIAS_S3_FILEPATH = "PIs/alias.csv"
 PREPAY_DEBITS_S3_FILEPATH = "Prepay/prepay_debits.csv"
 
+REQUIRED_ENV_VARS = ("KEYCLOAK_CLIENT_ID", "KEYCLOAK_CLIENT_SECRET")
+
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -94,6 +98,12 @@ def load_prepay_csv(prepay_credits_path, prepay_projects_path, prepay_contacts_p
 
 def get_iso8601_time():
     return datetime.datetime.now().strftime("%Y%m%dT%H%M%SZ")
+
+
+def validate_required_env_vars():
+    for required_env_var in REQUIRED_ENV_VARS:
+        if required_env_var not in os.environ:
+            sys.exit(f"Required environment variable {required_env_var} is not set")
 
 
 def main():
@@ -220,6 +230,8 @@ def main():
     )
     args = parser.parse_args()
 
+    validate_required_env_vars()
+
     invoice_month = args.invoice_month
 
     csv_files = args.csv_files or fetch_s3_invoices(invoice_month)
@@ -258,8 +270,13 @@ def main():
 
     ### Preliminary processing
 
+    coldfront_fetch_proc = coldfront_fetch_processor.ColdfrontFetchProcessor(
+        "", invoice_month, merged_dataframe, projects
+    )
+    coldfront_fetch_proc.process()
+
     validate_pi_alias_proc = validate_pi_alias_processor.ValidatePIAliasProcessor(
-        "", invoice_month, merged_dataframe, alias_dict
+        "", invoice_month, coldfront_fetch_proc.data, alias_dict
     )
     validate_pi_alias_proc.process()
 
