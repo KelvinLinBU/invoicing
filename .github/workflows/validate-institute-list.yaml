@@ -22,4 +22,4 @@ jobs:
 
       - name: Validate institute list
         run: |
-          python -m process_report.instiute_list_validate --github
+          python -m process_report.institute_list_validate --github
