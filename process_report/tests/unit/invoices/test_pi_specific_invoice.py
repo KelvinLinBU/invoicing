@@ -1,3 +1,4 @@
+import tempfile
 from unittest import TestCase, mock
 import pandas
 
@@ -123,23 +124,23 @@ class TestPISpecificInvoice(TestCase):
 
         mock_filter_cols.return_value = test_invoice
         mock_path_exists.return_value = True
-        test_dir = "test_dir"
 
-        pi_inv = test_utils.new_pi_specific_invoice(
-            test_dir, invoice_month, data=test_invoice
-        )
-        pi_inv.process()
-        pi_inv.export()
-        pi_pdf_1 = f"{test_dir}/BU_PI1_{invoice_month}.pdf"
-        pi_pdf_2 = f"{test_dir}/HU_PI2_{invoice_month}.pdf"
+        with tempfile.TemporaryDirectory() as test_dir:
+            pi_inv = test_utils.new_pi_specific_invoice(
+                test_dir, invoice_month, data=test_invoice
+            )
+            pi_inv.process()
+            pi_inv.export()
+            pi_pdf_1 = f"{test_dir}/BU_PI1_{invoice_month}.pdf"
+            pi_pdf_2 = f"{test_dir}/HU_PI2_{invoice_month}.pdf"
 
-        for i, pi_pdf_path in enumerate([pi_pdf_1, pi_pdf_2]):
-            chrome_arglist, _ = mock_subprocess_run.call_args_list[i]
-            answer_arglist = [
-                "/usr/bin/chromium",
-                "--headless",
-                "--no-sandbox",
-                f"--print-to-pdf={pi_pdf_path}",
-                "--no-pdf-header-footer",
-            ]
-            self.assertTrue(answer_arglist == chrome_arglist[0][:-1])
+            for i, pi_pdf_path in enumerate([pi_pdf_1, pi_pdf_2]):
+                chrome_arglist, _ = mock_subprocess_run.call_args_list[i]
+                answer_arglist = [
+                    "/usr/bin/chromium",
+                    "--headless",
+                    "--no-sandbox",
+                    f"--print-to-pdf={pi_pdf_path}",
+                    "--no-pdf-header-footer",
+                ]
+                self.assertTrue(answer_arglist == chrome_arglist[0][:-1])
