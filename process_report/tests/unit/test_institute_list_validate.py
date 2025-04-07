@@ -20,7 +20,7 @@ class TestInstituteListValidate(TestCase):
             },
         ]
 
-        with tempfile.NamedTemporaryFile(mode="w") as f:
+        with tempfile.NamedTemporaryFile(mode="w", delete=False) as f:
             yaml.dump(test_institute_list, f)
             f.flush()
             main(["--github", f.name])
@@ -35,7 +35,7 @@ class TestInstituteListValidate(TestCase):
             }
         ]
 
-        with tempfile.NamedTemporaryFile(mode="w") as f:
+        with tempfile.NamedTemporaryFile(mode="w", delete=False) as f:
             yaml.dump(test_institute_list, f)
             f.flush()
             with self.assertRaises(SystemExit):

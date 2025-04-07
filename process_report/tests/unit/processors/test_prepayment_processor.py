@@ -89,6 +89,7 @@ class TestPrepaymentProcessor(TestCase):
         self.test_prepay_debits_file = tempfile.NamedTemporaryFile(
             delete=False, mode="w+", suffix=".csv"
         )
+        self.test_prepay_debits_file.close()
 
     def tearDown(self) -> None:
         os.remove(self.test_prepay_debits_file.name)

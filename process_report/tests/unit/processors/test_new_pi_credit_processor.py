@@ -110,6 +110,7 @@ class TestNewPICreditProcessor(TestCase):
         self.test_old_pi_file = tempfile.NamedTemporaryFile(
             delete=False, mode="w+", suffix=".csv"
         )
+        self.test_old_pi_file.close()
 
     def tearDown(self) -> None:
         os.remove(self.test_old_pi_file.name)
