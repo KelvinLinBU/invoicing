@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 import pandas
 
 from process_report.processors import processor
@@ -67,6 +69,10 @@ class DiscountProcessor(processor.Processor):
                     )
 
         remaining_discount_amount = discount_amount
+        invoice[pi_balance_field] = invoice[pi_balance_field].apply(
+            lambda x: Decimal(str(x))
+        )
+        invoice[balance_field] = invoice[balance_field].apply(lambda x: Decimal(str(x)))
         for i, row in pi_projects.iterrows():
             if remaining_discount_amount == 0:
                 break
