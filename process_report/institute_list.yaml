@@ -1,104 +1,105 @@
--   display_name: Northeastern University
-    domains:
-    - northeastern.edu
-    mghpcc_partnership_start_date: "2013-06"
--   display_name: Boston University
-    domains:
-    - bu.edu
-    mghpcc_partnership_start_date: "2013-06"
-    include_in_nerc_total_invoice: True
--   display_name: Bentley
-    domains:
-    - bentley.edu
--   display_name: University of Rhode Island
-    domains:
-    - uri.edu
-    include_in_nerc_total_invoice: True
--   display_name: Red Hat
-    domains:
-    - redhat.com
--   display_name: Boston Childrens Hospital
-    domains:
-    - childrens.harvard.edu
--   display_name: McLean Hospital
-    domains:
-    - mclean.harvard.edu
--   display_name: Massachusetts Eye & Ear
-    domains:
-    - meei.harvard.edu
--   display_name: Dana-Farber Cancer Institute
-    domains:
-    - dfci.harvard.edu
--   display_name: Brigham and Women's Hospital
-    domains:
-    - bwh.harvard.edu
--   display_name: Beth Israel Deaconess Medical Center
-    domains:
-    - bidmc.harvard.edu
--   display_name: Harvard University
-    domains:
-    - harvard.edu
-    - chemistry.harvard.edu
-    mghpcc_partnership_start_date: "2013-06"
-    include_in_nerc_total_invoice: True
--   display_name: Worcester Polytechnic Institute
-    domains:
-    - wpi.edu
--   display_name: Massachusetts Institute of Technology
-    domains:
-    - mit.edu
-    mghpcc_partnership_start_date: "2013-06"
--   display_name: University of Massachusetts Amherst
-    domains:
-    - umass.edu
-    mghpcc_partnership_start_date: "2013-06"
--   display_name: University of Massachusetts Lowell
-    domains:
-    - uml.edu
-    mghpcc_partnership_start_date: "2013-06"
--   display_name: Code For Boston
-    domains:
-    - codeforboston.org
--   display_name: Yale University
-    domains:
-    - yale.edu
-    mghpcc_partnership_start_date: "2013-06"
--   display_name: Dartmouth College
-    domains:
-    - dartmouth.edu
--   display_name: Photrek
-    domains:
-    - photrek.io
--   display_name: Positron Networks
-    domains:
-    - positronnetworks.com
--   display_name: Next Generation Justice
-    domains:
-    - nextgenjustice.llc
--   display_name: Research Space
-    domains:
-    - researchspace.com
--   display_name: University of Toronto
-    domains:
-    - utoronto.ca
--   display_name: New York University
-    domains:
-    - nyu.edu
--   display_name: North Carolina State University
-    domains:
-    - ncsu.edu
--   display_name: Illinois State
-    domains:
-    - ilstu.edu
--   display_name: Olin College
-    domains:
-    - olin.edu
--   display_name: Grader Than LLC
-    domains:
-    - graderthan.com
--   display_name: The Synergist
-    domains:
-    - thesynergist.org
--   display_name: CipherSonic Labs
-    domains:
-    - ciphersoniclabs.io
+institutions:
+    -   display_name: Northeastern University
+        domains:
+        - northeastern.edu
+        mghpcc_partnership_start_date: "2013-06"
+    -   display_name: Boston University
+        domains:
+        - bu.edu
+        mghpcc_partnership_start_date: "2013-06"
+        include_in_nerc_total_invoice: True
+    -   display_name: Bentley
+        domains:
+        - bentley.edu
+    -   display_name: University of Rhode Island
+        domains:
+        - uri.edu
+        include_in_nerc_total_invoice: True
+    -   display_name: Red Hat
+        domains:
+        - redhat.com
+    -   display_name: Boston Childrens Hospital
+        domains:
+        - childrens.harvard.edu
+    -   display_name: McLean Hospital
+        domains:
+        - mclean.harvard.edu
+    -   display_name: Massachusetts Eye & Ear
+        domains:
+        - meei.harvard.edu
+    -   display_name: Dana-Farber Cancer Institute
+        domains:
+        - dfci.harvard.edu
+    -   display_name: Brigham and Women's Hospital
+        domains:
+        - bwh.harvard.edu
+    -   display_name: Beth Israel Deaconess Medical Center
+        domains:
+        - bidmc.harvard.edu
+    -   display_name: Harvard University
+        domains:
+        - harvard.edu
+        - chemistry.harvard.edu
+        mghpcc_partnership_start_date: "2013-06"
+        include_in_nerc_total_invoice: True
+    -   display_name: Worcester Polytechnic Institute
+        domains:
+        - wpi.edu
+    -   display_name: Massachusetts Institute of Technology
+        domains:
+        - mit.edu
+        mghpcc_partnership_start_date: "2013-06"
+    -   display_name: University of Massachusetts Amherst
+        domains:
+        - umass.edu
+        mghpcc_partnership_start_date: "2013-06"
+    -   display_name: University of Massachusetts Lowell
+        domains:
+        - uml.edu
+        mghpcc_partnership_start_date: "2013-06"
+    -   display_name: Code For Boston
+        domains:
+        - codeforboston.org
+    -   display_name: Yale University
+        domains:
+        - yale.edu
+        mghpcc_partnership_start_date: "2013-06"
+    -   display_name: Dartmouth College
+        domains:
+        - dartmouth.edu
+    -   display_name: Photrek
+        domains:
+        - photrek.io
+    -   display_name: Positron Networks
+        domains:
+        - positronnetworks.com
+    -   display_name: Next Generation Justice
+        domains:
+        - nextgenjustice.llc
+    -   display_name: Research Space
+        domains:
+        - researchspace.com
+    -   display_name: University of Toronto
+        domains:
+        - utoronto.ca
+    -   display_name: New York University
+        domains:
+        - nyu.edu
+    -   display_name: North Carolina State University
+        domains:
+        - ncsu.edu
+    -   display_name: Illinois State
+        domains:
+        - ilstu.edu
+    -   display_name: Olin College
+        domains:
+        - olin.edu
+    -   display_name: Grader Than LLC
+        domains:
+        - graderthan.com
+    -   display_name: The Synergist
+        domains:
+        - thesynergist.org
+    -   display_name: CipherSonic Labs
+        domains:
+        - ciphersoniclabs.io

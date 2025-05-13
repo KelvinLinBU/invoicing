@@ -34,13 +34,13 @@ class InstituteInfo(pydantic.BaseModel):
     model_config = pydantic.ConfigDict(extra="forbid")
 
 
-class InstituteList(pydantic.RootModel):
-    root: list[InstituteInfo]
+class InstituteList(pydantic.BaseModel):
+    institutions: list[InstituteInfo]
 
     @pydantic.model_validator(mode="after")
     def validate_no_display_name_duplicates(self):
         name_set = set()
-        for institute in self.root:
+        for institute in self.institutions:
             if institute.display_name in name_set:
                 raise ValueError(
                     f"Duplicate institute display name found: {institute.display_name}"
@@ -52,7 +52,7 @@ class InstituteList(pydantic.RootModel):
     @pydantic.model_validator(mode="after")
     def validate_no_domain_duplicates(self):
         domain_name_set = set()
-        for institute in self.root:
+        for institute in self.institutions:
             for domain in institute.domains:
                 if domain in domain_name_set:
                     raise ValueError(f"Duplicate domain: {domain}")

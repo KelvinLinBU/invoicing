@@ -37,7 +37,7 @@ def main(arg_list: list[str] | None = None):
             data = yaml.safe_load(f)
             institute_list = InstituteList.model_validate(data)
             print(
-                f"Validation of {len(institute_list.root)} institution entries successful"
+                f"Validation of {len(institute_list.institutions)} institution entries successful"
             )
     except pydantic.ValidationError as err:
         if args.github:
