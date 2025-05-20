@@ -463,9 +463,5 @@ def backup_to_s3_old_pi_file(old_pi_file):
     invoice_bucket.upload_file(old_pi_file, f"PIs/Archive/PI {get_iso8601_time()}.csv")
 
 
-def export_billables(dataframe, output_file):
-    dataframe.to_csv(output_file, index=False)
-
-
 if __name__ == "__main__":
     main()
