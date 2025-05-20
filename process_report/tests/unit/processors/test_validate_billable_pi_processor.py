@@ -8,8 +8,8 @@ from process_report.tests import util as test_utils
 
 class TestValidateBillablePIProcessor(TestCase):
     def test_remove_nonbillables(self):
-        pis = [uuid.uuid4().hex for x in range(10)]
-        projects = [uuid.uuid4().hex for x in range(10)]
+        pis = [uuid.uuid4().hex for _ in range(10)]
+        projects = [uuid.uuid4().hex for _ in range(10)]
         nonbillable_pis = pis[:3]
         nonbillable_projects = [
             project.upper() for project in projects[7:]
