@@ -208,7 +208,7 @@ def main():
     parser.add_argument(
         "--ocp-test-file",
         required=False,
-        default="OCP-TEST",
+        default="OCP_TEST",
         help="Name of output csv for Openshift test cluster invoice",
     )
     parser.add_argument(
@@ -398,7 +398,7 @@ def main():
     )
 
     ocp_test_inv = ocp_test_invoice.OcpTestInvoice(
-        name="", invoice_month=invoice_month, data=processed_data.copy()
+        name=args.ocp_test_file, invoice_month=invoice_month, data=processed_data.copy()
     )
 
     util.process_and_export_invoices(
