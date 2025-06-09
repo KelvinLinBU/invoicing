@@ -1,4 +1,5 @@
 import os
+import sys
 from dataclasses import dataclass
 import subprocess
 import tempfile
@@ -25,8 +26,6 @@ class PIInvoice(invoice.Invoice):
     - ValidateBillablePIsProcessor
     - NewPICreditProcessor
     """
-
-    chrome_binary_location: str
 
     TOTAL_COLUMN_LIST = [
         invoice.COST_FIELD,
@@ -64,6 +63,8 @@ class PIInvoice(invoice.Invoice):
         invoice.CREDIT_CODE_FIELD,
         invoice.BALANCE_FIELD,
     ]
+
+    chrome_binary_location: str
 
     def _prepare(self):
         self.export_data = self.data[
@@ -121,6 +122,11 @@ class PIInvoice(invoice.Invoice):
             temp_fd.flush()
 
         def _create_pdf_invoice(temp_fd_name):
+            if not os.path.exists(self.chrome_binary_location):
+                sys.exit(
+                    f"Chrome binary does not exist at {self.chrome_binary_location}. Make sure the env var CHROME_BIN_PATH is set correctly and that Google Chrome is installed"
+                )
+
             invoice_pdf_path = (
                 f"{self.name}/{pi_instituition}_{pi}_{self.invoice_month}.pdf"
             )

@@ -108,13 +108,6 @@ def validate_required_env_vars(required_env_vars):
 def main():
     """Remove non-billable PIs and projects"""
 
-    chrome_binary_location = os.environ.get("CHROME_BIN_PATH", "/usr/bin/chromium")
-
-    if not os.path.exists(chrome_binary_location):
-        sys.exit(
-            f"Chrome binary does not exist at {chrome_binary_location}. Make sure the env var CHROME_BIN_PATH is set correctly and that Google Chrome is installed"
-        )
-
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
@@ -249,8 +242,12 @@ def main():
 
     required_env_vars = []
     if not args.coldfront_data_file:
-        required_env_vars.extend(["KEYCLOAK_CLIENT_ID", "KEYCLOAK_CLIENT_SECRET"])
+        required_env_vars.extend(
+            ["KEYCLOAK_CLIENT_ID", "KEYCLOAK_CLIENT_SECRET", "CHROME_BIN_PATH"]
+        )
     validate_required_env_vars(required_env_vars)
+
+    chrome_binary_location = os.environ.get("CHROME_BIN_PATH", "/usr/bin/chromium")
 
     invoice_month = args.invoice_month
 
