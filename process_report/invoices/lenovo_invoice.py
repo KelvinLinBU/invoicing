@@ -8,7 +8,7 @@ class LenovoInvoice(invoice.Invoice):
     LENOVO_SU_TYPES = [
         "OpenShift GPUA100SXM4",
         "OpenStack GPUA100SXM4",
-        "OpenStack GPUH100",
+        "OpenShift GPUH100",
         "BM GPUH100",
     ]
 
